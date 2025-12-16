@@ -1,0 +1,108 @@
+.notices-section {
+    background: var(--bg-secondary);
+}
+
+.notices-grid {
+    margin-top: var(--spacing-xl);
+}
+
+.notice-card {
+    cursor: pointer;
+    transition: all var(--transition-base);
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.notice-card:hover {
+    transform: translateY(-8px);
+}
+
+.notice-card.expanded {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--primary);
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.notice-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.notice-category {
+    color: var(--text-muted);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.notice-date {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+}
+
+.date-icon,
+.time-icon {
+    font-size: var(--font-size-sm);
+}
+
+.notice-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.notice-content {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all var(--transition-base);
+}
+
+.notice-content.show {
+    max-height: 500px;
+    opacity: 1;
+    margin-bottom: var(--spacing-md);
+}
+
+.notice-toggle {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-base);
+    width: 100%;
+}
+
+.notice-toggle:hover {
+    background: var(--primary);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .notice-header {
+        flex-direction: column;
+    }
+
+    .notice-title {
+        font-size: var(--font-size-base);
+    }
+}
