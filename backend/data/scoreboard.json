@@ -358,5 +358,17 @@
     "college": "ASTRA",
     "grade": "C",
     "name": "Liya V"
+  },
+  {
+    "id": 1765917958623,
+    "type": "individual",
+    "category": "onstage",
+    "program": "dance",
+    "chestNumber": "101",
+    "rank": "1",
+    "score": "5",
+    "college": "EAKHA",
+    "grade": "A",
+    "name": "Rishad Ali P P"
   }
 ]

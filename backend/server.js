@@ -27,7 +27,11 @@ const app = express();
 // Use Render's PORT environment variable or default to 5000
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Configure CORS to allow requests from the frontend
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003'],
+    credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -55,15 +59,32 @@ const writeData = (file, data) => {
 };
 
 // Login Endpoint
-app.post('/api/login', (req, res) => {
+app.post('/api/admin/login', (req, res) => {
     const { username, password } = req.body;
     const admins = readData(ADMINS_FILE);
+    // Debug logging
+    console.log('Login attempt:', {
+        receivedUsername: username,
+        receivedPassword: password,
+        adminsFound: admins.length
+    });
+
     const admin = admins.find(a => a.username === username && a.password === password);
+    console.log('Admin found:', !!admin);
 
     if (admin) {
         res.json({ success: true, token: 'admin-token-123' });
     } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
+        res.status(401).json({
+            success: false,
+            message: 'Invalid credentials',
+            debug: {
+                receivedUsername: username,
+                receivedPassword: password,
+                adminsCount: admins.length,
+                adminFile: ADMINS_FILE
+            }
+        });
     }
 });
 
